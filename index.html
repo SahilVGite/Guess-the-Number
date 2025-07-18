@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess the Number</title>
+    <link rel="icon" href="./favicon.png">
     <style>
         *,body{box-sizing:border-box;}
         body{font-family:Arial,sans-serif;text-align:center;background-color:#f4f4f4;padding:15px;min-height:85vh;display:flex;justify-content:center;align-items:center;}
@@ -12,7 +13,7 @@
         input#userInput{padding:10px;font-size:16px;width:100%;border:1px solid #cbcbcb;border-radius:5px;outline:none;}
         button{padding:10px 20px;font-size:16px;cursor:pointer;border:none;border-radius:5px;}
         #guessBtn{background:#28a745;color:white;width:100%;}
-        #guessBtn:disabled{background:#ccc;}
+        #guessBtn:disabled{background:#ccc;cursor: not-allowed;}
         #resetBtn{background:#007bff;color:white;width:100%;}
         .result{margin-top:0.5em;font-size:15px;margin-bottom:0;font-weight:700;}
         p.countRemaing{color:#adabab;font-size:15px;}
@@ -29,15 +30,15 @@
             <button id="guessBtn">Guess</button>
             <button id="resetBtn">Reset Game</button>
         </div>
-        <p class="result" id="resultText"></p>
+        <p class="result" id="resultText"><span style="color: rgb(122, 131, 114);">Best Luck!!</span></p>
     </div>
 
     <script>
-        (() => {
             let generatedNum = Math.floor(Math.random() * 100) + 1;
             let guessNumCount = 0;
             let maxGuesses = 10;
             let countRemaing = document.querySelector('.countRemaing');
+            document.getElementById('resetBtn').style.display = "none";
             countRemaing.innerHTML = `You have ${(10 - guessNumCount)} attempts` + (guessNumCount < 1 ? "" : " remaining...");
 
             document.getElementById('guessBtn').addEventListener('click', function () {
@@ -62,9 +63,11 @@
                 } else if (userNumber > generatedNum) {
                     resultText.innerHTML = "⬇️ Too high!" + (guessNumCount < maxGuesses ? " Try again." : "");
                     resultText.style.color = "red";
+                    document.getElementById('resetBtn').style.display = "block";
                 } else if (userNumber < generatedNum) {
                     resultText.innerHTML = "⬆️ Too low!" + (guessNumCount < maxGuesses ? " Try again." : "");
                     resultText.style.color = "red";
+                    document.getElementById('resetBtn').style.display = "block";
                 }
 
                 if (guessNumCount >= maxGuesses) {
@@ -84,14 +87,13 @@
                 generatedNum = Math.floor(Math.random() * 100) + 1;
                 guessNumCount = 0;
                 countRemaing.innerHTML = `You have ${(10 - guessNumCount)} attempts` + (guessNumCount < 1 ? "" : " remaining...");
-                document.getElementById('resultText').innerHTML = "";
-                document.getElementById('resultText').style.color = "black";
+                document.getElementById('resultText').innerHTML = "Best Luck!!";
+                document.getElementById('resultText').style.color = "rgb(122, 131, 114)";
                 document.getElementById('userInput').value = "";
                 document.getElementById('userInput').disabled = false;
                 document.getElementById('guessBtn').disabled = false;
-                // document.getElementById('resetBtn').style.display = "none";
+                document.getElementById('resetBtn').style.display = "none";
             });
-        })();
 
     </script>
 </body>
