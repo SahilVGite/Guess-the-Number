@@ -1,3 +1,9 @@
+## 🚀 Live Demo
+
+🌐 [Visit the Website] (https://sahilvgite.github.io/Guess-the-Number/)
+
+---
+
 # 🎯 Guess the Number - JavaScript Game
 
 A simple and fun browser-based number guessing game where the user tries to guess a randomly generated number between **1 and 100** within **10 attempts**.
